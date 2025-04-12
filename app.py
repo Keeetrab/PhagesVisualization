@@ -34,31 +34,26 @@ def show_home_page():
     with col2:
         st.title("🧬 Phage Therapy Analyzer")
         
-        # Instructions box
-        st.markdown("""
-        <div style='padding: 20px; border-radius: 10px; border: 2px solid #f0f2f6; margin-bottom: 20px;'>
-            <h2 style='text-align: center; color: #0066cc;'>Sample Collection Instructions</h2>
-            <ol style='font-size: 18px;'>
-                <li>Clean the sampling area thoroughly</li>
-                <li>Use the sterile swab provided in the kit</li>
-                <li>Collect the sample with a rolling motion</li>
-                <li>Place the swab in the analyzer port</li>
-            </ol>
-        </div>
-        """, unsafe_allow_html=True)
+        # Create two columns for GIF and instructions
+        gif_col, instr_col = st.columns([1, 1])
         
-        # Animation of sample placement
-        animation_placeholder = st.empty()
-        animation_placeholder.markdown("""
-        <div style='text-align: center; font-family: monospace; font-size: 20px; white-space: pre;'>
-        Insert sample here:
+        with gif_col:
+            # Display the GIF animation
+            st.image("./assets/minION_manual_large.gif", output_format="GIF")
         
-        ┌──────────┐
-        │          │
-        │    ▼     │
-        └──────────┘
-        </div>
-        """, unsafe_allow_html=True)
+        with instr_col:
+            # Instructions box
+            st.markdown("""
+            <div style='padding: 20px;'>
+                <h2 style='text-align: center; color: #ffffff;'>Sample Collection Instructions</h2>
+                <ol style='font-size: 18px;'>
+                    <li>Clean the sampling area thoroughly</li>
+                    <li>Use the sterile swab provided in the kit</li>
+                    <li>Collect the sample with a rolling motion</li>
+                    <li>Place the swab in the analyzer port</li>
+                </ol>
+            </div>
+            """, unsafe_allow_html=True)
         
         # Process button
         st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
@@ -134,7 +129,7 @@ def show_results_page():
     
     # Filter data and prepare for display
     filtered_df = df[df['bacterium'] == bacterium].copy()
-    filtered_df['Probability (%)'] = (filtered_df['key_gene_output'] * 100).round(2)
+    filtered_df['Probability (%)'] = (filtered_df['key_gene_output'] * 100).round(3)
     filtered_df = filtered_df.sort_values('Probability (%)', ascending=False)
     
     # Display results in two columns
@@ -156,7 +151,7 @@ def show_results_page():
         
         # Display only relevant columns with renamed columns
         display_df = filtered_df[['phage', 'Probability (%)']].rename(columns={'phage': 'Phage'})
-        styled_df = display_df.style.apply(highlight_recommended, axis=1)
+        styled_df = display_df.style.apply(highlight_recommended, axis=1).format({'Probability (%)': '{:.1f}%'})
         st.dataframe(styled_df, use_container_width=True, hide_index=True)
         
     with col2:
