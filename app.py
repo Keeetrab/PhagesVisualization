@@ -14,17 +14,19 @@ st.set_page_config(
 # Initialize session state
 if 'current_page' not in st.session_state:
     st.session_state.current_page = "Home"
-if 'analysis_complete' not in st.session_state:
     st.session_state.analysis_complete = False
-if 'progress' not in st.session_state:
     st.session_state.progress = 0
-if 'current_step' not in st.session_state:
     st.session_state.current_step = 0
 
 # Load data
 @st.cache_data
 def load_data():
     return pd.read_csv('data/result.csv')
+
+def reset_analysis_state():
+    st.session_state.analysis_complete = False
+    st.session_state.progress = 0
+    st.session_state.current_step = 0
 
 def show_home_page():
     # Center-aligned container
@@ -61,11 +63,9 @@ def show_home_page():
         # Process button
         st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
         if st.button("Process Sample", key="process_button", use_container_width=True):
+            reset_analysis_state()
             st.session_state.current_page = "Sample Analysis"
-            st.session_state.progress = 0
-            st.session_state.current_step = 0
-            st.session_state.analysis_complete = False
-            st.experimental_rerun()
+            st.rerun()
         st.markdown("</div>", unsafe_allow_html=True)
         
         # Status indicator
@@ -98,15 +98,20 @@ def show_analysis_page():
     # Only update progress if analysis is not complete
     if not st.session_state.analysis_complete:
         if st.session_state.current_step < len(steps):
+            # Add initial delay for the first step
+            if st.session_state.current_step == 0:
+                status_text.text("Preparing analysis...")
+                time.sleep(2)  # Initial delay before starting
+            
             status_text.text(steps[st.session_state.current_step])
             st.session_state.progress = (st.session_state.current_step + 1) / len(steps)
             progress_bar.progress(st.session_state.progress)
-            time.sleep(1)
+            time.sleep(1.5)  # Slightly longer delay between steps
             st.session_state.current_step += 1
-            st.experimental_rerun()
+            st.rerun()
         else:
             st.session_state.analysis_complete = True
-            st.experimental_rerun()
+            st.rerun()
     
     # Show completion messages and button only when analysis is done
     if st.session_state.analysis_complete:
@@ -115,7 +120,7 @@ def show_analysis_page():
         st.info('Identified bacteria: GL538315')
         if st.button("View Results"):
             st.session_state.current_page = "Results"
-            st.experimental_rerun()
+            st.rerun()
 
 def show_results_page():
     st.header("Analysis Results")
