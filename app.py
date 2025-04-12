@@ -10,6 +10,12 @@ PROCESSING_TIMES = {
     'completion_delay': 1  # Delay before showing completion message
 }
 
+# Data file configuration
+DATA_FILE = 'data\Modelresults_with_names.csv'  # Path to the input data file
+
+# Analysis configuration
+SELECTED_BACTERIA = "GL538315"  # The bacterium to analyze
+
 # Set page config
 st.set_page_config(
     page_title="Phage Therapy Analysis",
@@ -57,7 +63,7 @@ if 'current_page' not in st.session_state:
 # Load data
 @st.cache_data
 def load_data():
-    return pd.read_csv('data/result.csv')
+    return pd.read_csv(DATA_FILE)
 
 def reset_analysis_state():
     st.session_state.analysis_complete = False
@@ -154,9 +160,13 @@ def show_analysis_page():
         
         # Show completion messages and automatically move to results
         if st.session_state.analysis_complete:
+            # Load data to get bacterium name
+            df = load_data()
+            bacterium_name = df[df['bacterium'] == SELECTED_BACTERIA]['Bacterium name'].iloc[0]
+            
             status_text.text("Analysis completed!")
             st.success('Analysis complete!')
-            st.info('Identified bacteria: GL538315')
+            st.info(f'Identified bacteria: {bacterium_name} ({SELECTED_BACTERIA})')
             time.sleep(PROCESSING_TIMES['completion_delay'])  # Show completion message for 2 seconds
             st.session_state.current_page = "Results"
             st.rerun()
@@ -170,12 +180,12 @@ def show_results_page():
     # Load and display data
     df = load_data()
     
-    # Hardcode the bacterium
-    bacterium = "GL538315"
-    st.success(f"Identified Bacteria: {bacterium}")
+    # Get the bacterium name for the selected ID
+    bacterium_name = df[df['bacterium'] == SELECTED_BACTERIA]['Bacterium name'].iloc[0]
+    st.success(f"Identified Bacteria: {bacterium_name} ({SELECTED_BACTERIA})")
     
     # Filter data and prepare for display
-    filtered_df = df[df['bacterium'] == bacterium].copy()
+    filtered_df = df[df['bacterium'] == SELECTED_BACTERIA].copy()
     filtered_df['Probability (%)'] = (filtered_df['key_gene_output'] * 100).round(3)
     filtered_df = filtered_df.sort_values('Probability (%)', ascending=False)
     
@@ -204,11 +214,11 @@ def show_results_page():
     
     # Right column - Information
     with col2:
-        st.markdown("""
+        st.markdown(f"""
         <div style='padding: 20px; margin-top: 50px;'>
-            <h3 style='color: #ffd700; font-size: 24px;'>Phage Cocktail GL-538315 - Yellow</h3>
+            <h3 style='color: #ffd700; font-size: 24px;'>Phage Cocktail {SELECTED_BACTERIA} - Yellow</h3>
             <p style='color: #ffffff; font-size: 20px; margin-top: 20px;'>Recommended dosage: 1 vial per day</p>
-            <p style='color: #ffffff; font-size: 18px; margin-top: 20px;'>Target: Staphylococcus aureus GL538315</p>
+            <p style='color: #ffffff; font-size: 18px; margin-top: 20px;'>Target: {bacterium_name} ({SELECTED_BACTERIA})</p>
         </div>
         """, unsafe_allow_html=True)
     
@@ -237,7 +247,11 @@ def show_results_page():
             return [''] * len(row)
         
         # Display only relevant columns with renamed columns
-        display_df = filtered_df[['phage', 'Probability (%)']].rename(columns={'phage': 'Phage'})
+        display_df = filtered_df[['phage', 'Phage Name', 'Probability (%)']].rename(columns={
+            'phage': 'Phage ID',
+            'Phage Name': 'Phage Name',
+            'Probability (%)': 'Probability (%)'
+        })
         styled_df = display_df.style.apply(highlight_recommended, axis=1).format({'Probability (%)': '{:.1f}%'})
         st.dataframe(styled_df, use_container_width=True, hide_index=True)
         
@@ -246,12 +260,12 @@ def show_results_page():
         # Create a bar chart with highlighted recommended phages
         fig = px.bar(
             filtered_df,
-            x='phage',
+            x='Phage Name',  # Changed from 'phage' to 'Phage Name'
             y='Probability (%)',
             title='Phage Effectiveness',
             color=filtered_df['Probability (%)'] > 75,
             color_discrete_map={True: '#00cc00', False: '#2196F3'},
-            labels={'phage': 'Phage ID', 'Probability (%)': 'Effectiveness (%)'}
+            labels={'Phage Name': 'Phage Name', 'Probability (%)': 'Effectiveness (%)'}
         )
         # Update layout for dark mode
         fig.update_layout(
