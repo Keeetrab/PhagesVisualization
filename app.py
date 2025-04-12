@@ -72,50 +72,61 @@ def show_home_page():
         """, unsafe_allow_html=True)
 
 def show_analysis_page():
-    st.header("Sample Analysis")
-    st.write("""
-    ### Processing Status
-    Please do not remove the sample during analysis.
-    """)
-    
-    # Simulate processing steps
-    progress_bar = st.progress(st.session_state.progress)
-    status_text = st.empty()
-    
-    steps = [
-        "Initializing sequencer...",
-        "Processing sample...",
-        "Analyzing genetic material...",
-        "Identifying bacterial strain...",
-        "Calculating phage effectiveness..."
-    ]
+    # Center-aligned container
+    col1, col2, col3 = st.columns([1,2,1])
+    with col2:
+        st.title("🧬 Sample Analysis")
+        
+        # Add vertical spacing
+        st.markdown("<div style='height: 100px;'></div>", unsafe_allow_html=True)
+        
+        st.markdown("""
+        <div style='text-align: center; margin-bottom: 20px;'>
+            <p style='color: #ffffff;'>Please do not remove the sample during analysis.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # Simulate processing steps
+        progress_bar = st.progress(st.session_state.progress)
+        status_text = st.empty()
+        
+        steps = [
+            "Initializing sequencer...",
+            "Processing sample...",
+            "Analyzing genetic material...",
+            "Identifying bacterial strain...",
+            "Calculating phage effectiveness..."
+        ]
 
-    # Only update progress if analysis is not complete
-    if not st.session_state.analysis_complete:
-        if st.session_state.current_step < len(steps):
-            # Add initial delay for the first step
-            if st.session_state.current_step == 0:
-                status_text.text("Preparing analysis...")
-                time.sleep(2)  # Initial delay before starting
-            
-            status_text.text(steps[st.session_state.current_step])
-            st.session_state.progress = (st.session_state.current_step + 1) / len(steps)
-            progress_bar.progress(st.session_state.progress)
-            time.sleep(1.5)  # Slightly longer delay between steps
-            st.session_state.current_step += 1
-            st.rerun()
-        else:
-            st.session_state.analysis_complete = True
-            st.rerun()
-    
-    # Show completion messages and button only when analysis is done
-    if st.session_state.analysis_complete:
-        status_text.text("Analysis completed!")
-        st.success('Analysis complete!')
-        st.info('Identified bacteria: GL538315')
-        if st.button("View Results"):
+        # Only update progress if analysis is not complete
+        if not st.session_state.analysis_complete:
+            if st.session_state.current_step < len(steps):
+                # Add initial delay for the first step
+                if st.session_state.current_step == 0:
+                    status_text.text("Preparing analysis...")
+                    time.sleep(2)  # Initial delay before starting
+                
+                status_text.text(steps[st.session_state.current_step])
+                st.session_state.progress = (st.session_state.current_step + 1) / len(steps)
+                progress_bar.progress(st.session_state.progress)
+                time.sleep(1.5)  # Slightly longer delay between steps
+                st.session_state.current_step += 1
+                st.rerun()
+            else:
+                st.session_state.analysis_complete = True
+                st.rerun()
+        
+        # Show completion messages and automatically move to results
+        if st.session_state.analysis_complete:
+            status_text.text("Analysis completed!")
+            st.success('Analysis complete!')
+            st.info('Identified bacteria: GL538315')
+            time.sleep(1)  # Show completion message for 2 seconds
             st.session_state.current_page = "Results"
             st.rerun()
+            
+        # Add vertical spacing at the bottom
+        st.markdown("<div style='height: 100px;'></div>", unsafe_allow_html=True)
 
 def show_results_page():
     st.header("Analysis Results")
@@ -132,7 +143,47 @@ def show_results_page():
     filtered_df['Probability (%)'] = (filtered_df['key_gene_output'] * 100).round(3)
     filtered_df = filtered_df.sort_values('Probability (%)', ascending=False)
     
-    # Display results in two columns
+    # Main vial display section
+    st.markdown("""
+    <div style='text-align: center; margin: 20px 0; padding: 20px; background-color: #1a1a1a; border-radius: 10px;'>
+        <h2 style='color: #ffd700;'>Recommended Treatment</h2>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Create two columns for vial and information
+    col1, col2 = st.columns([1, 1])
+    
+    # Left column - Vial image
+    with col1:
+        st.markdown("""
+            <style>
+                [data-testid="stImage"] {
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            </style>
+            """, unsafe_allow_html=True)
+        st.image("./assets/yellow_vial.png", width=300)
+    
+    # Right column - Information
+    with col2:
+        st.markdown("""
+        <div style='padding: 20px; margin-top: 50px;'>
+            <h3 style='color: #ffd700; font-size: 24px;'>Phage Cocktail GL-538315 - Yellow</h3>
+            <p style='color: #ffffff; font-size: 20px; margin-top: 20px;'>Recommended dosage: 1 vial per day</p>
+            <p style='color: #ffffff; font-size: 18px; margin-top: 20px;'>Target: Staphylococcus aureus GL538315</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    # Detailed results section
+    st.markdown("""
+    <div style='text-align: center; margin: 20px 0; padding: 20px; background-color: #1a1a1a; border-radius: 10px;'>
+        <h2 style='color: #ffffff;'>Detailed Analysis</h2>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Display detailed results in two columns
     col1, col2 = st.columns(2)
     
     with col1:
