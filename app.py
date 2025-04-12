@@ -11,6 +11,27 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
+# Minimal CSS styling for button and progress bar
+st.markdown("""
+    <style>
+        .stButton>button {
+            background-color: #FD0363;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-weight: bold;
+        }
+        .stButton>button:hover {
+            background-color: #CC095D;
+            color: white;
+        }
+        .stProgress > div > div > div > div {
+            background-color: #FD0363;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 # Initialize session state
 if 'current_page' not in st.session_state:
     st.session_state.current_page = "Home"
