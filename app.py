@@ -11,7 +11,7 @@ PROCESSING_TIMES = {
 }
 
 # Data file configuration
-DATA_FILE = 'data\Modelresults_with_names_v4.csv'  # Path to the input data file
+DATA_FILE = 'data/Modelresults_with_names_v4.csv'  # Path to the input data file
 
 # Analysis configuration
 SELECTED_BACTERIA = "NZ_CP029736"  # The bacterium to analyze
