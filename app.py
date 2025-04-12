@@ -132,39 +132,67 @@ def show_results_page():
     bacterium = "GL538315"
     st.success(f"Identified Bacteria: {bacterium}")
     
-    # Filter data
-    filtered_df = df[df['bacterium'] == bacterium]
+    # Filter data and prepare for display
+    filtered_df = df[df['bacterium'] == bacterium].copy()
+    filtered_df['Probability (%)'] = (filtered_df['key_gene_output'] * 100).round(2)
+    filtered_df = filtered_df.sort_values('Probability (%)', ascending=False)
     
-    # Display results
+    # Display results in two columns
     col1, col2 = st.columns(2)
     
     with col1:
-        st.subheader("Top Phage Recommendations")
-        # Sort by key_gene_output and show top 5
-        top_phages = filtered_df.sort_values('key_gene_output', ascending=False).head()
-        st.dataframe(top_phages[['phage', 'key_gene_output', 'wgs_output']])
+        st.subheader("Recommended Phages")
+        st.markdown("""
+        <div style='margin-bottom: 20px;'>
+            <p style='color: #00cc00; font-size: 16px;'>Phages with probability >75% are recommended for treatment</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # Create a styled dataframe
+        def highlight_recommended(row):
+            if row['Probability (%)'] > 75:
+                return ['background-color: #1a3d1a; color: #ffffff'] * len(row)
+            return [''] * len(row)
+        
+        # Display only relevant columns with renamed columns
+        display_df = filtered_df[['phage', 'Probability (%)']].rename(columns={'phage': 'Phage'})
+        styled_df = display_df.style.apply(highlight_recommended, axis=1)
+        st.dataframe(styled_df, use_container_width=True, hide_index=True)
         
     with col2:
         st.subheader("Visualization")
+        # Create a bar chart with highlighted recommended phages
         fig = px.bar(
-            top_phages,
+            filtered_df,
             x='phage',
-            y='key_gene_output',
-            title='Phage Effectiveness Scores',
-            labels={'key_gene_output': 'Effectiveness Score', 'phage': 'Phage ID'}
+            y='Probability (%)',
+            title='Phage Effectiveness',
+            color=filtered_df['Probability (%)'] > 75,
+            color_discrete_map={True: '#00cc00', False: '#2196F3'},
+            labels={'phage': 'Phage ID', 'Probability (%)': 'Effectiveness (%)'}
         )
-        st.plotly_chart(fig)
+        # Update layout for dark mode
+        fig.update_layout(
+            plot_bgcolor='rgba(0,0,0,0)',
+            paper_bgcolor='rgba(0,0,0,0)',
+            font=dict(color='white'),
+            xaxis=dict(gridcolor='rgba(255,255,255,0.1)'),
+            yaxis=dict(gridcolor='rgba(255,255,255,0.1)')
+        )
+        st.plotly_chart(fig, use_container_width=True)
         
     # Additional information
-    st.subheader("Detailed Information")
-    st.write("""
-    - **Key Gene Output**: Score based on key gene matching (higher is better)
-    - **WGS Output**: Score based on whole genome sequence analysis
-    """)
-    
-    # Show all available phages
-    st.subheader("All Available Phages")
-    st.dataframe(filtered_df[['phage', 'key_gene_output', 'wgs_output']].sort_values('key_gene_output', ascending=False))
+    st.markdown("""
+    <div style='margin-top: 20px; padding: 15px; background-color: #1a1a1a; border-radius: 5px;'>
+        <h4 style='color: #ffffff;'>Treatment Recommendations</h4>
+        <p style='color: #ffffff;'>Based on the analysis, the following phages are recommended for treatment:</p>
+        <ul style='color: #ffffff;'>
+            <li>Phages with effectiveness >75% are considered highly effective</li>
+            <li>Multiple phages can be used in combination for better results</li>
+            <li>Consult with a healthcare professional before proceeding with treatment</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
 
 # Main app
 def main():
