@@ -3,6 +3,13 @@ import pandas as pd
 import plotly.express as px
 import time
 
+# Processing timing configuration
+PROCESSING_TIMES = {
+    'initial_delay': 0.5,  # Initial delay before starting analysis
+    'step_delay': 0.5,   # Delay between processing steps
+    'completion_delay': 1  # Delay before showing completion message
+}
+
 # Set page config
 st.set_page_config(
     page_title="Phage Therapy Analysis",
@@ -28,6 +35,14 @@ st.markdown("""
         }
         .stProgress > div > div > div > div {
             background-color: #FD0363;
+        }
+        /* Toast notification styling */
+        .stAlert {
+            background-color: #FD0363 !important;
+            border-color: #FD0363 !important;
+        }
+        .stAlert .stAlert-content {
+            color: white !important;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -125,12 +140,12 @@ def show_analysis_page():
                 # Add initial delay for the first step
                 if st.session_state.current_step == 0:
                     status_text.text("Preparing analysis...")
-                    time.sleep(2)  # Initial delay before starting
+                    time.sleep(PROCESSING_TIMES['initial_delay'])  # Initial delay before starting
                 
                 status_text.text(steps[st.session_state.current_step])
                 st.session_state.progress = (st.session_state.current_step + 1) / len(steps)
                 progress_bar.progress(st.session_state.progress)
-                time.sleep(1.5)  # Slightly longer delay between steps
+                time.sleep(PROCESSING_TIMES['step_delay'])  # Slightly longer delay between steps
                 st.session_state.current_step += 1
                 st.rerun()
             else:
@@ -142,7 +157,7 @@ def show_analysis_page():
             status_text.text("Analysis completed!")
             st.success('Analysis complete!')
             st.info('Identified bacteria: GL538315')
-            time.sleep(1)  # Show completion message for 2 seconds
+            time.sleep(PROCESSING_TIMES['completion_delay'])  # Show completion message for 2 seconds
             st.session_state.current_page = "Results"
             st.rerun()
             
