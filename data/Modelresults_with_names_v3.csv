@@ -1,0 +1,73 @@
+phage,Phage Name,bacterium,Bacterium name,key_gene_output,wgs_output,phage_key_gene_num,host_key_gene_num
+MG711466,Faecalibacterium phage FP_Toutatis,GL538315,Faecalibacterium cf. prausnitzii KLE1255,0.9970,0.5572751,3,52
+MG711460,Faecalibacterium phage FP_Mushu,NC_003911,Ruegeria pomeroyi DSS-3,1.0000,0.5843127,2,628
+NC_053009,Providencia phage vB_PreS-PibeRecoleta,NC_017731,Providencia stuartii MRSN 2154,0.9945,0.049975693,3,712
+MG711466,Faecalibacterium phage FP_Toutatis,NC_021020,Faecalibacterium prausnitzii SL3/3,0.9999,0.5373716,3,483
+MG711466,Faecalibacterium phage FP_Toutatis,NC_021042,Faecalibacterium prausnitzii L2-6,0.9999,0.5382546,3,518
+NC_053009,Providencia phage vB_PreS-PibeRecoleta,NZ_CP029736,Providencia rettgeri strain AR_0082,0.9996,0.060520694,3,752
+MG711466,Faecalibacterium phage FP_Toutatis,NZ_DS483503,Faecalibacterium prausnitzii M21/2 Scfld_02_24,0.9915,0.54292923,3,179
+MG711466,Faecalibacterium phage FP_Toutatis,NZ_GG697149,Faecalibacterium duncaniae strain A2-165 Scfld0,1.0000,0.54169554,3,120
+MG711464,Faecalibacterium phage FP_Lugh,GL538315,Faecalibacterium cf. prausnitzii KLE1255,0.8162,0.55459005,5,52
+MG711467,Faecalibacterium phage FP_Taranis,NC_003911,Ruegeria pomeroyi DSS-3,1.0000,0.6017335,7,628
+MG711466,Faecalibacterium phage FP_Toutatis,NC_017731,Providencia stuartii MRSN 2154,0.0168,0.0006372492,3,712
+NC_053009,Providencia phage vB_PreS-PibeRecoleta,NC_021020,Faecalibacterium prausnitzii SL3/3,0.9993,0.5074944,3,483
+NC_053009,Providencia phage vB_PreS-PibeRecoleta,NC_021042,Faecalibacterium prausnitzii L2-6,0.9993,0.4715909,3,518
+MG711466,Faecalibacterium phage FP_Toutatis,NZ_CP029736,Providencia rettgeri strain AR_0082,0.9974,0.0003572074,3,752
+NC_053009,Providencia phage vB_PreS-PibeRecoleta,NZ_DS483503,Faecalibacterium prausnitzii M21/2 Scfld_02_24,0.9165,0.48718944,3,179
+NC_053009,Providencia phage vB_PreS-PibeRecoleta,NZ_GG697149,Faecalibacterium duncaniae strain A2-165 Scfld0,0.9992,0.49987474,3,120
+NC_053009,Providencia phage vB_PreS-PibeRecoleta,GL538315,Faecalibacterium cf. prausnitzii KLE1255,0.4291,0.50688136,3,52
+MG711462,Faecalibacterium phage FP_Epona,NC_003911,Ruegeria pomeroyi DSS-3,1.0000,0.5919082,4,628
+MG711464,Faecalibacterium phage FP_Lugh,NC_017731,Providencia stuartii MRSN 2154,0.0002,0.006104316,5,712
+MG711461,Faecalibacterium phage FP_Lagaffe,NC_021020,Faecalibacterium prausnitzii SL3/3,0.4235,0.5175436,8,483
+MG711461,Faecalibacterium phage FP_Lagaffe,NC_021042,Faecalibacterium prausnitzii L2-6,0.3036,0.51896995,8,518
+MG711464,Faecalibacterium phage FP_Lugh,NZ_CP029736,Providencia rettgeri strain AR_0082,0.3118,0.003533842,5,752
+MG711464,Faecalibacterium phage FP_Lugh,NZ_DS483503,Faecalibacterium prausnitzii M21/2 Scfld_02_24,0.0570,0.54063517,5,179
+MG711461,Faecalibacterium phage FP_Lagaffe,NZ_GG697149,Faecalibacterium duncaniae strain A2-165 Scfld0,0.3011,0.5206954,8,120
+MG711461,Faecalibacterium phage FP_Lagaffe,GL538315,Faecalibacterium cf. prausnitzii KLE1255,0.1017,0.53666574,8,52
+MG711461,Faecalibacterium phage FP_Lagaffe,NC_003911,Ruegeria pomeroyi DSS-3,1.0000,0.5643215,8,628
+MG711461,Faecalibacterium phage FP_Lagaffe,NC_017731,Providencia stuartii MRSN 2154,0.0001,0.00039955767,8,712
+MG711464,Faecalibacterium phage FP_Lugh,NC_021020,Faecalibacterium prausnitzii SL3/3,0.0797,0.53645307,5,483
+MG711464,Faecalibacterium phage FP_Lugh,NC_021042,Faecalibacterium prausnitzii L2-6,0.0558,0.5375164,5,518
+NC_052979,Providencia phage Kokobel1,NZ_CP029736,Providencia rettgeri strain AR_0082,0.1405,0.018808972,4,752
+NC_052979,Providencia phage Kokobel1,NZ_DS483503,Faecalibacterium prausnitzii M21/2 Scfld_02_24,0.0352,0.5192603,4,179
+MG711464,Faecalibacterium phage FP_Lugh,NZ_GG697149,Faecalibacterium duncaniae strain A2-165 Scfld0,0.0928,0.53875935,5,120
+MG711460,Faecalibacterium phage FP_Mushu,GL538315,Faecalibacterium cf. prausnitzii KLE1255,0.0748,0.53434676,2,52
+NC_052969,Ruegeria phage vB_RpoS-V16,NC_003911,Ruegeria pomeroyi DSS-3,1.0000,0.61750245,5,628
+NC_052979,Providencia phage Kokobel1,NC_017731,Providencia stuartii MRSN 2154,0.0001,0.018644324,4,712
+NC_052979,Providencia phage Kokobel1,NC_021020,Faecalibacterium prausnitzii SL3/3,0.0153,0.52454144,4,483
+NC_052979,Providencia phage Kokobel1,NC_021042,Faecalibacterium prausnitzii L2-6,0.0194,0.5188668,4,518
+MG711461,Faecalibacterium phage FP_Lagaffe,NZ_CP029736,Providencia rettgeri strain AR_0082,0.0305,0.00038198975,8,752
+MG711461,Faecalibacterium phage FP_Lagaffe,NZ_DS483503,Faecalibacterium prausnitzii M21/2 Scfld_02_24,0.0335,0.52297163,8,179
+NC_052979,Providencia phage Kokobel1,NZ_GG697149,Faecalibacterium duncaniae strain A2-165 Scfld0,0.0207,0.52021646,4,120
+NC_052979,Providencia phage Kokobel1,GL538315,Faecalibacterium cf. prausnitzii KLE1255,0.0551,0.5228307,4,52
+MG711464,Faecalibacterium phage FP_Lugh,NC_003911,Ruegeria pomeroyi DSS-3,0.9998,0.5925603,5,628
+NC_052969,Ruegeria phage vB_RpoS-V16,NC_017731,Providencia stuartii MRSN 2154,0.0001,0.00053119974,5,712
+NC_052969,Ruegeria phage vB_RpoS-V16,NC_021020,Faecalibacterium prausnitzii SL3/3,0.0019,0.51154625,5,483
+NC_052969,Ruegeria phage vB_RpoS-V16,NC_021042,Faecalibacterium prausnitzii L2-6,0.0019,0.5172166,5,518
+NC_052969,Ruegeria phage vB_RpoS-V16,NZ_CP029736,Providencia rettgeri strain AR_0082,0.0204,0.0001997636,5,752
+NC_052969,Ruegeria phage vB_RpoS-V16,NZ_DS483503,Faecalibacterium prausnitzii M21/2 Scfld_02_24,0.0081,0.5241272,5,179
+NC_052969,Ruegeria phage vB_RpoS-V16,NZ_GG697149,Faecalibacterium duncaniae strain A2-165 Scfld0,0.0025,0.5218166,5,120
+MG711462,Faecalibacterium phage FP_Epona,GL538315,Faecalibacterium cf. prausnitzii KLE1255,0.0248,0.53974336,4,52
+NC_053009,Providencia phage vB_PreS-PibeRecoleta,NC_003911,Ruegeria pomeroyi DSS-3,0.9993,0.5098328,3,628
+MG711462,Faecalibacterium phage FP_Epona,NC_017731,Providencia stuartii MRSN 2154,0.0000,0.00011955809,4,712
+MG711462,Faecalibacterium phage FP_Epona,NC_021020,Faecalibacterium prausnitzii SL3/3,0.0006,0.50644076,4,483
+MG711462,Faecalibacterium phage FP_Epona,NC_021042,Faecalibacterium prausnitzii L2-6,0.0006,0.51078635,4,518
+MG711462,Faecalibacterium phage FP_Epona,NZ_CP029736,Providencia rettgeri strain AR_0082,0.0000,7.96E-05,4,752
+MG711462,Faecalibacterium phage FP_Epona,NZ_DS483503,Faecalibacterium prausnitzii M21/2 Scfld_02_24,0.0032,0.51776946,4,179
+MG711462,Faecalibacterium phage FP_Epona,NZ_GG697149,Faecalibacterium duncaniae strain A2-165 Scfld0,0.0013,0.5141474,4,120
+NC_052969,Ruegeria phage vB_RpoS-V16,GL538315,Faecalibacterium cf. prausnitzii KLE1255,0.0212,0.55000794,5,52
+MG711466,Faecalibacterium phage FP_Toutatis,NC_003911,Ruegeria pomeroyi DSS-3,0.9972,0.5839918,3,628
+MG711467,Faecalibacterium phage FP_Taranis,NC_017731,Providencia stuartii MRSN 2154,0.0000,0.0007711778,7,712
+MG711467,Faecalibacterium phage FP_Taranis,NC_021020,Faecalibacterium prausnitzii SL3/3,0.0003,0.5398372,7,483
+MG711467,Faecalibacterium phage FP_Taranis,NC_021042,Faecalibacterium prausnitzii L2-6,0.0003,0.54081815,7,518
+MG711467,Faecalibacterium phage FP_Taranis,NZ_CP029736,Providencia rettgeri strain AR_0082,0.0000,0.00043241336,7,752
+MG711460,Faecalibacterium phage FP_Mushu,NZ_DS483503,Faecalibacterium prausnitzii M21/2 Scfld_02_24,0.0016,0.51815987,2,179
+MG711460,Faecalibacterium phage FP_Mushu,NZ_GG697149,Faecalibacterium duncaniae strain A2-165 Scfld0,0.0006,0.5149853,2,120
+MG711467,Faecalibacterium phage FP_Taranis,GL538315,Faecalibacterium cf. prausnitzii KLE1255,0.0018,0.56166184,7,52
+NC_052979,Providencia phage Kokobel1,NC_003911,Ruegeria pomeroyi DSS-3,0.0041,0.5297441,4,628
+MG711460,Faecalibacterium phage FP_Mushu,NC_017731,Providencia stuartii MRSN 2154,0.0000,0.0004455313,2,712
+MG711460,Faecalibacterium phage FP_Mushu,NC_021020,Faecalibacterium prausnitzii SL3/3,0.0002,0.50846696,2,483
+MG711460,Faecalibacterium phage FP_Mushu,NC_021042,Faecalibacterium prausnitzii L2-6,0.0002,0.5124053,2,518
+MG711460,Faecalibacterium phage FP_Mushu,NZ_CP029736,Providencia rettgeri strain AR_0082,0.0000,0.0002843116,2,752
+MG711467,Faecalibacterium phage FP_Taranis,NZ_DS483503,Faecalibacterium prausnitzii M21/2 Scfld_02_24,0.0007,0.5453973,7,179
+MG711467,Faecalibacterium phage FP_Taranis,NZ_GG697149,Faecalibacterium duncaniae strain A2-165 Scfld0,0.0004,0.5429224,7,120

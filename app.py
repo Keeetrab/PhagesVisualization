@@ -11,10 +11,10 @@ PROCESSING_TIMES = {
 }
 
 # Data file configuration
-DATA_FILE = 'data\Modelresults_with_names.csv'  # Path to the input data file
+DATA_FILE = 'data\Modelresults_with_names_v4.csv'  # Path to the input data file
 
 # Analysis configuration
-SELECTED_BACTERIA = "GL538315"  # The bacterium to analyze
+SELECTED_BACTERIA = "NZ_CP029736"  # The bacterium to analyze
 
 # Set page config
 st.set_page_config(
@@ -189,39 +189,6 @@ def show_results_page():
     filtered_df['Probability (%)'] = (filtered_df['key_gene_output'] * 100).round(3)
     filtered_df = filtered_df.sort_values('Probability (%)', ascending=False)
     
-    # Main vial display section
-    st.markdown("""
-    <div style='text-align: center; margin: 20px 0; padding: 20px; background-color: #1a1a1a; border-radius: 10px;'>
-        <h2 style='color: #ffd700;'>Recommended Treatment</h2>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # Create two columns for vial and information
-    col1, col2 = st.columns([1, 1])
-    
-    # Left column - Vial image
-    with col1:
-        st.markdown("""
-            <style>
-                [data-testid="stImage"] {
-                    display: block;
-                    margin-left: auto;
-                    margin-right: auto;
-                }
-            </style>
-            """, unsafe_allow_html=True)
-        st.image("./assets/yellow_vial.png", width=300)
-    
-    # Right column - Information
-    with col2:
-        st.markdown(f"""
-        <div style='padding: 20px; margin-top: 50px;'>
-            <h3 style='color: #ffd700; font-size: 24px;'>Phage Cocktail {SELECTED_BACTERIA} - Yellow</h3>
-            <p style='color: #ffffff; font-size: 20px; margin-top: 20px;'>Recommended dosage: 1 vial per day</p>
-            <p style='color: #ffffff; font-size: 18px; margin-top: 20px;'>Target: {bacterium_name} ({SELECTED_BACTERIA})</p>
-        </div>
-        """, unsafe_allow_html=True)
-    
     # Detailed results section
     st.markdown("""
     <div style='text-align: center; margin: 20px 0; padding: 20px; background-color: #1a1a1a; border-radius: 10px;'>
@@ -276,6 +243,39 @@ def show_results_page():
             yaxis=dict(gridcolor='rgba(255,255,255,0.1)')
         )
         st.plotly_chart(fig, use_container_width=True)
+    
+    # Main vial display section
+    st.markdown("""
+    <div style='text-align: center; margin: 20px 0; padding: 20px; background-color: #1a1a1a; border-radius: 10px;'>
+        <h2 style='color: #ffd700;'>Recommended Treatment</h2>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Create two columns for vial and information
+    col1, col2 = st.columns([1, 1])
+    
+    # Left column - Vial image
+    with col1:
+        st.markdown("""
+            <style>
+                [data-testid="stImage"] {
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            </style>
+            """, unsafe_allow_html=True)
+        st.image("./assets/yellow_vial.png", width=300)
+    
+    # Right column - Information
+    with col2:
+        st.markdown(f"""
+        <div style='padding: 20px; margin-top: 50px;'>
+            <h3 style='color: #ffd700; font-size: 24px;'>Phage Cocktail {SELECTED_BACTERIA} - Yellow</h3>
+            <p style='color: #ffffff; font-size: 20px; margin-top: 20px;'>Recommended dosage: 1 vial per day</p>
+            <p style='color: #ffffff; font-size: 18px; margin-top: 20px;'>Target: {bacterium_name} ({SELECTED_BACTERIA})</p>
+        </div>
+        """, unsafe_allow_html=True)
         
     # Additional information
     st.markdown("""
