@@ -5,9 +5,9 @@ import time
 
 # Processing timing configuration
 PROCESSING_TIMES = {
-    'initial_delay': 0.5,  # Initial delay before starting analysis
-    'step_delay': 0.5,   # Delay between processing steps
-    'completion_delay': 1  # Delay before showing completion message
+    'initial_delay': 1.5,  # Initial delay before starting analysis
+    'step_delay': 1.5,   # Delay between processing steps
+    'completion_delay': 2  # Delay before showing completion message
 }
 
 # Data file configuration
